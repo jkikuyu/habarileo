@@ -84,17 +84,23 @@
 
 		$user = $_POST["username"];
 		$pass =$_POST["password"];
-		$sql = "select user_name, password from users where user_name= '". $user. "'";
+
+		
+		$sql = "select userid, user_name, password,usertype from users where user_name= '". $user. "'";
 
 		$result = $objDB->getResults($sql);
 
 		$_SESSION['errors'] = "Username  or password does not exist";
 
 		if($result){
+			$row = array();
 			foreach($result AS $row){
 				
 				if (trim($row["password"]) ===$pass){
 					if(isset($_SESSION["errors"])) unset($_SESSION["errors"]);
+
+					$_SESSION["username"] = $user;
+					$_SESSION["userId"] = $row["userid"];
 					return true;
 				}
 				else{

@@ -8,10 +8,11 @@
 					<head>
 						<meta charset="UTF-8">
 							<title><?php echo $lang["title"]; ?></title>
-							<link rel = "stylesheet" href = "css/style.css" />
+							<link rel = "stylesheet" href = "styles/style.css" />
 							<!--<script src = "js/jquery.min.js"></script>-->
 							<!--<script src = "js/bootstrap.min.js"></script>-->
-							<link type = "text/css" rel = "stylesheet" href = "css/bootstrap.min.css" />
+							<link type = "text/css" rel = "stylesheet" href = "styles/bootstrap.min.css" />
+
 							<link type = "text/css" rel = "stylesheet" href = "js/nyroModal/styles/nyroModal.css" />
 							<script type = "text/javascript" src = "js/nyroModal/js/jquery-1.11.1.min.js" ></script>
 							<script type = "text/javascript" src = "js/nyroModal/js/jquery.nyroModal.custom.js" ></script>
@@ -148,13 +149,13 @@
 			<?php
 		
 		}
-		public function list_container(){
+		public function admin_container(){
 			require "lang/en.php";
 			?>
 		<div class = "container">
 			<h2 align = "center"><?php print $lang["table_title"]; ?></h2>
 			
-			<?php if (basename($_SERVER['PHP_SELF']) == "index.php") { ?>
+<!-- 			<?php if (basename($_SERVER['PHP_SELF']) == "index.php") { ?>
 				<div class = "form-group">
 					<div class = "input-group">
 						<span class = "input-group-addon">Search</span>
@@ -162,14 +163,15 @@
 					</div>
 				</div>
 			<?php } ?>
-			<p align = "right">
+ 			<p align = "right">
 				[<a href = "dispatch.php?adduser">Add New <?php print $lang["group_name"]; ?> User </a>]
 			</p>
-			<p align = "right">
-				[<a href = "dispatch.php?change_group=group_a">Group A</a>]
-				[<a href = "dispatch.php?change_group=group_b">Group B</a>]
-				[<a href = "dispatch.php?change_group=group_x">Group eX</a>]
-				[<a href = "dispatch.php?change_group=group_e">Group eV</a>]
+-->
+			<p align = "center">
+				[<a href = "dispatch.php?editId= <?php echo $_SESSION["userId"]; ?>">Update Profile</a>]
+				[<a href = "dispatch.php?change_group=manage">Manage Users</a>]
+				[<a href = "dispatch.php?change_group=vwarticles">View Articles</a>]
+				[<a href = "dispatch.php?change_group=logout">Log out</a>]
 			</p>
 			<!-- <?php if($MYSQL->count_results($spot_select_user) > 0){ ?> -->
 			<p align = "right">

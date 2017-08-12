@@ -264,6 +264,26 @@ label{
   	transition: background-color 0.3s;
 
 }
+.user_form {
+    width: 100%;
+    padding: 12px 20px;
+    margin: 8px 0;
+    box-sizing: border-box;
+	font-size: 20px;
+	font-family: Arial;
+	border: 1px solid #373737;
+}
+
+.user_form textarea {
+    width: 100%;
+    padding: 12px 20px;
+    margin: 8px 0;
+    box-sizing: border-box;
+	font-size: 16px;
+	font-family: Arial;
+	border: 1px solid #373737;
+}
+
 
 /* The "Forgot password" text */
 span.psw {

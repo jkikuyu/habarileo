@@ -46,12 +46,14 @@ $MYSQL = new db($DB_TYPE_MYSQL,$DB_HOST_MYSQL,$DB_NAME_MYSQL,$DB_USER_MYSQL,$DB_
 
 $objLogin = new login();
 $objLayout = new layout();
+$objForm = new userdetailsform();
+$objProc = new process();
 
 if (!isset($_SESSION["user_view"])){
 	$_SESSION["user_view"] = "list_view";
 }
 if (!isset($_SESSION["table_name"])){
-	$_SESSION["table_name"] = "Users";
+	$_SESSION["table_name"] = "users";
 	header("Location: ./");
 	exit();
 }

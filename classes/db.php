@@ -62,7 +62,25 @@ class Db{
 			    return $res;
 			    break;
 			}
-	    }
+	 }
+	/******************************************************************************************
+	Select Query From a DataBase
+	******************************************************************************************/
+	public function select($sql){
+		switch ($this->type) {
+			case 'mysqli':
+				$result = $this->conn->query($sql);
+				$res    = $result->fetch_assoc();
+				return $res;
+				break;
+			case 'mysql':
+				$result = mysqli_query($this->conn,$sql);
+				$res    = mysqli_fetch_all($result,MYSQLI_ASSOC);
+				return $res;
+				break;
+		}
+        }
+
 }
 
 
