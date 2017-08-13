@@ -1,6 +1,7 @@
 <?php
 	session_start();
 	require_once "classes/classesAutoload.php";
+
 	if(isset($_GET["viewId"])){
 		if(is_numeric($_GET["viewId"])){
 			$viewId = $_GET["viewId"];
@@ -22,11 +23,27 @@
 			exit();
 		}
 	}
-	if (isset($_GET["change_group"])){
-		$_SESSION["table_name"] = $_GET["change_group"];
+	if (isset($_GET["choice"])){
+		$choice = $_GET["choice"];
+		$_SESSION["table_name"] = $choice;
+		if ($choice ==="users"){
+			$_SESSION["choice"] = 1;
+
+		}
+		else{
+			$_SESSION["choice"] = 2;		
+		}
+
 		header("Location: ./");
 		exit();
 	}
+
+	if (isset($_GET["logout"])){
+		session_destroy();
+		header("Location: ./");
+		exit();
+	}
+
 	if (isset($_GET["user_view"])){
 		$_SESSION["user_view"] = $_GET["user_view"];
 		header("Location: ./");

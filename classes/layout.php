@@ -149,13 +149,27 @@
 			<?php
 		
 		}
-		public function admin_container(){
+		public function admin_container($task){
 			require "lang/en.php";
+			$dispatch=array();
+			switch ($task) {
+				case 1:
+
+				 $dispatch[0] = "editId=". $_SESSION["userId"];
+				 $dispatch[1] = "choice=users";
+				 $dispatch[2] = "choice=articles";
+				 $dispatch[3] = "logout=true";
+				
+				 break;
+				case 2:
+				 $dispatch[0] = "editId=". $_SESSION["userId"];
+				 $dispatch[1] = "change_group=manage";
+				 $dispatch[2] = "change_group=vwarticles";
+				 $dispatch[3] = "change_group=logout";
+
+
 			?>
-		<div class = "container">
-			<h2 align = "center"><?php print $lang["table_title"]; ?></h2>
-			
-<!-- 			<?php if (basename($_SERVER['PHP_SELF']) == "index.php") { ?>
+ 			<?php if (basename($_SERVER['PHP_SELF']) == "index.php" and $task > 1 ) { ?>
 				<div class = "form-group">
 					<div class = "input-group">
 						<span class = "input-group-addon">Search</span>
@@ -163,17 +177,48 @@
 					</div>
 				</div>
 			<?php } ?>
- 			<p align = "right">
+			<h2 align = "center"><?php print $lang["table_title"]; ?></h2>
+
+			<?php
+
+					# code...
+					break;
+				
+				default:
+					# code...
+					break;
+			}
+
+			?>
+		<div class = "container">
+
+			<p align = "right">
+				<?php if(isset($_SESSION["choice"])){
+					if($_SESSION["choice"] ==1){
+				?>
+
+
+				[<a id="adduser" href = "dispatch.php?adduser">Add New User</a>] 
+				<?php
+					}
+					else{
+						echo "<script> userLinkHide();</script>";
+					}
+				}
+			?>
+				<!-- -->
+
+				[<a href = "dispatch.php?<?php echo $dispatch[0]?>">Update Profile</a>]
+				[<a href = "dispatch.php?<?php echo $dispatch[1]?>">Manage Users </a>]
+				[<a href = "dispatch.php?<?php echo $dispatch[2]?>">View Articles </a>]
+				[<a href = "dispatch.php?<?php echo $dispatch[3]?>">Log out </a>]
+				current user <?php echo " ". ucwords($_SESSION["username"])?>
+			</p>
+<!--  			<p align = "right">
 				[<a href = "dispatch.php?adduser">Add New <?php print $lang["group_name"]; ?> User </a>]
 			</p>
--->
-			<p align = "center">
-				[<a href = "dispatch.php?editId= <?php echo $_SESSION["userId"]; ?>">Update Profile</a>]
-				[<a href = "dispatch.php?change_group=manage">Manage Users</a>]
-				[<a href = "dispatch.php?change_group=vwarticles">View Articles</a>]
-				[<a href = "dispatch.php?change_group=logout">Log out</a>]
-			</p>
-			<!-- <?php if($MYSQL->count_results($spot_select_user) > 0){ ?> -->
+
+ -->			<!-- <?php if($MYSQL->count_results($spot_select_user) > 0){ ?> -->
 			<p align = "right">
 				[<a href = "topdf.php" target = "_BLANK">Export Pdf</a>] | [<a href = "textfile.php" target = "_BLANK">export to Text File</a>] | [<a href = "excell.php">export to Excel</a>]
 			</p>

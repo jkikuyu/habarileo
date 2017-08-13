@@ -10,7 +10,7 @@
 
 			switch($_SESSION["userId"]){
 				case 1:
-				$objLayout->admin_container();
+				$objLayout->admin_container(1);
 				break;
 				case 2:
 
@@ -30,7 +30,7 @@
 
 		switch ($_SESSION["username"]){
 			case 'admin':
-			$objLayout->admin_container();
+				$objLayout->admin_container(1);
 			break;
 
 		}

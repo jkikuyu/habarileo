@@ -5,7 +5,7 @@ class UserDetailsForm{
 ?>
 		<tr>
 			<td style = "width: 50%">
-			<fieldset style = "width: 100%;">
+			<fieldset style = "width: 50%;">
 						<legend><?php echo $lang["personal_info"]; ?></legend>
 					<table border = "0" align = "center" style = "width: 100%;" >
 						<form action = "" method = "POST" enctype = "multipart/form-data">

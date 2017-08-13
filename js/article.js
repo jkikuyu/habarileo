@@ -7,3 +7,7 @@ function disp_err(errMess){
 
 	errDiv.style.display="block";
 }
+function userLinkHide(){
+	var anchor =document.getElementById("adduser");
+	anchor.style.display='none';
+}

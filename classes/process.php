@@ -1,12 +1,12 @@
 <?php
 	class Process{
-		public function spot_user_list($MYSQL){
+		public function user_list($MYSQL){
 			require "lang/en.php";
 			
 			if(isset($_GET["delId"])){
 				if(is_numeric($_GET["delId"])){
 					$delId = $_GET["delId"];
-					$where = [ "Username" => $delId ];
+					$where = [ "userid" => $delId ];
 					$where_hist = [ "peopleId" => $delId ];
 					
 					$del_allgroups_pers = $MYSQL->delete($_SESSION["allgroups"], $where);
@@ -29,10 +29,11 @@
 			}
 			
 			if((isset($_POST["query"])) OR (!empty($_POST["query"]))){
-			 $search = $MYSQL->escape_values($_POST["query"]);
-				$spot_select_user = 'SELECT '.$_SESSION["table_name"].'.Username, '.$_SESSION["table_name"].'.Fullname, '.$_SESSION["allgroups"].'.Emailaddress, '.$_SESSION["allgroups"].'.Userphoto, FROM_UNIXTIME('.$_SESSION["allgroups"].'.Lastaccess) AS Lastaccess FROM '.$_SESSION["table_name"].' LEFT JOIN '.$_SESSION["allgroups"].' ON ('.$_SESSION["allgroups"].'.Username = '.$_SESSION["table_name"].'.Username) WHERE '.$_SESSION["allgroups"].'.Emailaddress LIKE "%'.$search.'%" OR '.$_SESSION["table_name"].'.Username LIKE "%'.$search.'%" OR '.$_SESSION["table_name"].'.Fullname LIKE "%'.$search.'%" ORDER BY '.$_SESSION["table_name"].'.Fullname ASC';
+			 	$search = $MYSQL->escape_values($_POST["query"]);
+				$sql = "SELECT user_name, full_name , email, phone_number, profile_image FROM users WHERE email LIKE %".$search."% OR user_name LIKE %".$search."% OR users.full_name LIKE %".$search."% ORDER BY full_name ASC";
 			} else {
-				$spot_select_user = 'SELECT '.$_SESSION["table_name"].'.Username, '.$_SESSION["table_name"].'.Fullname AS Fullname, '.$_SESSION["allgroups"].'.Emailaddress, '.$_SESSION["allgroups"].'.Userphoto, FROM_UNIXTIME('.$_SESSION["allgroups"].'.Lastaccess) AS Lastaccess FROM '.$_SESSION["table_name"].' LEFT JOIN '.$_SESSION["allgroups"].' ON ('.$_SESSION["allgroups"].'.Username = '.$_SESSION["table_name"].'.Username) ORDER BY '.$_SESSION["table_name"].'.Fullname ASC';
+				$sql = "SELECT user_name, full_name , email, phone_number, profile_image FROM users";
+
 			}
 
 			if($MYSQL->count_results($spot_select_user) > 0) {
